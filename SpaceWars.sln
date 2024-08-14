@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceWars", "SpaceWars\SpaceWars.csproj", "{73936CA8-22CB-45A8-B377-39BB99374A38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceWarsSignalRServer", "SpaceWarsSignalRServer\SpaceWarsSignalRServer.csproj", "{73ED8DCC-1767-40E9-BE7F-24408A9EA500}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73936CA8-22CB-45A8-B377-39BB99374A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73936CA8-22CB-45A8-B377-39BB99374A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73936CA8-22CB-45A8-B377-39BB99374A38}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{73936CA8-22CB-45A8-B377-39BB99374A38}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{73ED8DCC-1767-40E9-BE7F-24408A9EA500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73ED8DCC-1767-40E9-BE7F-24408A9EA500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73ED8DCC-1767-40E9-BE7F-24408A9EA500}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{73ED8DCC-1767-40E9-BE7F-24408A9EA500}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7F8A433-322B-4FF1-8EE4-B6281A0CD3FD}
+	EndGlobalSection
+EndGlobal
