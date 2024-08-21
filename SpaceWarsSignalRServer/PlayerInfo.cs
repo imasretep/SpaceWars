@@ -2,6 +2,7 @@
 {
     public class PlayerInfo
     {
+        public string UserName { get; set; }
         public string ConnectionId { get; set; }
         public string PlayerName { get; set; }
         public double LocX { get; set; }

@@ -15,22 +15,39 @@ namespace SpaceWars
     /// </summary>
     public partial class MainWindow : Window
     {
+        private LoginPage loginPage;
         private BattlePage battlePage;
         private SignalRServer server;
+        private string userName;
         public MainWindow()
         {
             InitializeComponent();
-            InitializeBattlePage();
+            InitializeLoginPage();
+            //InitializeBattlePage();
+            
 
         }
 
         private async void InitializeBattlePage()
         {
+            userName = loginPage.userName;
             server = new SignalRServer();
             await server.ConnectToServer();
-            battlePage = new BattlePage(server, this);
+            battlePage = new BattlePage(server, this, userName);
             gameField.Content = battlePage;
 
+        }
+
+        private void InitializeLoginPage()
+        {
+            loginPage = new LoginPage();
+            loginPage.LoginButtonClicked += OnLoginButtonClicked;
+            gameField.Content = loginPage;
+        }
+
+        private void OnLoginButtonClicked(object sender, EventArgs e)
+        {
+            InitializeBattlePage();
         }
     }
 }

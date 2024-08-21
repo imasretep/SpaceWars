@@ -5,7 +5,9 @@ namespace SpaceWars
 {
     public class PlayerInfo : INotifyPropertyChanged
     {
+
         private int healthPoints;
+        public string UserName { get; set; }
         public string ConnectionId { get; set; }
         public string PlayerName { get; set; }
         public double LocX { get; set; }
@@ -32,8 +34,9 @@ namespace SpaceWars
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         }
-        public PlayerInfo()
+        public PlayerInfo(string userName)
         {
+            UserName = userName;
             LocX = RandomLocationX();
             LocY = RandomLocationY();
             Angle = 0;
@@ -51,6 +54,13 @@ namespace SpaceWars
         {
             var random = new Random();
             var loc = random.Next(0, 450);
+            return loc;
+        }
+
+        private int RandomAngle()
+        {
+            var random = new Random();
+            var loc = random.Next(0, 360);
             return loc;
         }
     }

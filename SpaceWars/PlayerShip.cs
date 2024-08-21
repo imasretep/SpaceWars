@@ -23,9 +23,9 @@ namespace SpaceWars
         public bool Engaged { get; set; }
         public bool isRotated { get; set; }
 
-        public PlayerShip()
+        public PlayerShip(string userName)
         {
-            PlayerInfo = new PlayerInfo();
+            PlayerInfo = new PlayerInfo(userName);
             PlayerInfo.HealthPoints = 10;
             Speed = 0;
             MaxPositiveSpeed = 3;
@@ -185,10 +185,10 @@ namespace SpaceWars
             this.PlayerGfx.RenderTransform = rotateShip;
         }
 
-        public void Rotate(PlayerInfo playerAngle)
+        public void Rotate(PlayerInfo player)
         {
             this.PlayerGfx.RenderTransformOrigin = new Point(0.5, 0.5);
-            RotateTransform rotateShip = new RotateTransform(playerAngle.Angle);
+            RotateTransform rotateShip = new RotateTransform(player.Angle);
             this.PlayerGfx.RenderTransform = rotateShip;
         }
 

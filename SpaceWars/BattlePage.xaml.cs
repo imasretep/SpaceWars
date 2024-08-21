@@ -19,22 +19,22 @@ namespace SpaceWars
         DispatcherTimer gameTimer = new DispatcherTimer();
         public PlayerShip playerShip;
         private List<Missile> missiles = new List<Missile>();
-        private List<Asteroid> asteroids = new List<Asteroid>();
         private List<PlayerShip> enemyPlayerShips = new List<PlayerShip>();
         private List<Missile> enemyMissiles = new List<Missile>();
-        private Asteroid asteroid;
         private int counter = 0;
         private SignalRServer server;
         private bool isDestroyed;
+        private string userName = string.Empty;
 
         double distanceX = 0;
         double distanceY = 0;
 
         MainWindow mainWindow;
 
-        public BattlePage(SignalRServer server, MainWindow mainWindow)
+        public BattlePage(SignalRServer server, MainWindow mainWindow, string userName)
         {
             InitializeComponent();
+            this.userName = userName;
             this.server = server;
             this.mainWindow = mainWindow;
             server.PlayerJoined += Server_PlayerJoined;
@@ -166,9 +166,19 @@ namespace SpaceWars
 
         private async void InitializePlayer()
         {
-            playerShip = new PlayerShip();
+            // For random facing direction
+            var random = new Random();
+            var angle = random.Next(0, 360);
+
+            playerShip = new PlayerShip(userName);
             Canvas.SetLeft(playerShip.PlayerGfx, playerShip.PlayerInfo.LocX);
             Canvas.SetTop(playerShip.PlayerGfx, playerShip.PlayerInfo.LocY);
+
+            // Set facing direction
+            playerShip.PlayerInfo.Angle = angle;
+            playerShip.Rotate(playerShip.PlayerInfo);
+
+            // Add player to game field and server
             cnvGameField.Children.Add(playerShip.PlayerGfx);
             server.UpdatePlayer(playerShip, server);
 
@@ -176,17 +186,6 @@ namespace SpaceWars
 
         }
 
-
-        private void InitializeAsteroids()
-        {
-            asteroid = new Asteroid();
-            Canvas.SetLeft(asteroid.AsteroidsGfx, asteroid.LocX);
-            Canvas.SetTop(asteroid.AsteroidsGfx, asteroid.LocY);
-            cnvGameField.Children.Add(asteroid.AsteroidsGfx);
-
-            asteroids.Add(asteroid);
-
-        }
 
         private void InitializeTimer()
         {
@@ -337,6 +336,8 @@ namespace SpaceWars
             double newLocX = playerShip.PlayerInfo.LocX;
             double newLocY = playerShip.PlayerInfo.LocY;
 
+            double oldLocX = playerShip.PlayerInfo.LocX;
+            double oldLocY = playerShip.PlayerInfo.LocY;
 
             if (playerShip.thrusting || playerShip.sPressed)
             {
@@ -382,7 +383,12 @@ namespace SpaceWars
             playerShip.PlayerInfo.LocX = Canvas.GetLeft(playerShip.PlayerGfx);
             playerShip.PlayerInfo.LocY = Canvas.GetTop(playerShip.PlayerGfx);
 
-            server.UpdatePlayerLocation(this.playerShip);
+            if (playerShip.PlayerInfo.LocX != oldLocX || playerShip.PlayerInfo.LocY != oldLocY)
+            {
+                server.UpdatePlayerLocation(this.playerShip);
+            }
+            
+
             CollisionDetection();
 
         }

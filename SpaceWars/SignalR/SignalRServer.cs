@@ -61,7 +61,7 @@ namespace SpaceWars.SignalRService
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                enemyPlayer = new PlayerShip();
+                enemyPlayer = new PlayerShip(playerInfo.UserName);
                 enemyPlayer.PlayerInfo = playerInfo;
 
             });

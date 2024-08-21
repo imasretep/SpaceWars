@@ -13,7 +13,7 @@ namespace SpaceWarsSignalRServer.Hubs
 
         public async Task AddPlayerToServer(PlayerInfo playerInfo)
         {
-            Console.WriteLine("A player connected to server");
+            Console.WriteLine($"A player {playerInfo.UserName} connected to server");
 
             connectedPlayers.Add(playerInfo);
             await Clients.All.SendAsync("PlayerConnectedServer", playerInfo);
@@ -27,13 +27,13 @@ namespace SpaceWarsSignalRServer.Hubs
 
         public async Task PlayerLocation(PlayerInfo playerLocation)
         {
-            Console.WriteLine("PlayerID: " + playerLocation.ConnectionId + " Loc x: " + playerLocation.LocX + " Loc y: " + playerLocation.LocY + " Angle: " + playerLocation.Angle);
+            //Console.WriteLine("PlayerID: " + playerLocation.ConnectionId + " Loc x: " + playerLocation.LocX + " Loc y: " + playerLocation.LocY + " Angle: " + playerLocation.Angle);
             await Clients.All.SendAsync("LocationChanged", playerLocation);
         }
 
         public async Task AddMissileToServer(MissileInfo missile)
         {
-            Console.WriteLine("Pew pew!");
+            //Console.WriteLine("Pew pew!");
             await Clients.All.SendAsync("MissileInServer", missile);
         }
 
